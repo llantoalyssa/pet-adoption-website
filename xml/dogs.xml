@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dogs>
+    <dog id="1">
+        <name>Buddy</name>
+        <breed>Labrador</breed>
+        <age>3</age>
+        <gender>Male</gender>
+        <description>Friendly and playful</description>
+        <image>buddy.jpg</image>
+        <status>Available</status>
+    </dog>
+</dogs>
