@@ -67,14 +67,15 @@ $dogs = simplexml_load_file($xmlFile) or die("Error: Cannot load XML file");
     </form>
 </section>
 
-<!-- Chat Plugin Placeholder -->
-<div id="chat-plugin"></div>
+
 
 <!-- Footer -->
 <footer>
     <p>&copy; <?php echo date("Y"); ?> Dog Adoption Center. All rights reserved.</p>
 </footer>
 
+<!-- Tidio Live Chat -->
+<script src="//code.tidio.co/auxl5aeuqgmspfmkurizoujw55pzuiny.js" async></script>
 </body>
 </html>
 

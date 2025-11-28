@@ -1,12 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dogs>
-    <dog id="1">
+    <dog>
+        <id>1</id>
         <name>Buddy</name>
-        <breed>Labrador</breed>
+        <breed>Labrador Retriever</breed>
         <age>3</age>
         <gender>Male</gender>
-        <description>Friendly and playful</description>
-        <image>buddy.jpg</image>
+        <image>dog1.jpg</image>
         <status>Available</status>
+        <description>A friendly and energetic dog that loves kids and outdoor play.</description>
+    </dog>
+
+    <dog>
+        <id>2</id>
+        <name>Lucy</name>
+        <breed>Beagle</breed>
+        <age>2</age>
+        <gender>Female</gender>
+        <image>dog2.jpg</image>
+        <status>Available</status>
+        <description>A sweet and gentle beagle that enjoys cuddles and quiet afternoons.</description>
+    </dog>
+
+    <dog>
+        <id>3</id>
+        <name>Max</name>
+        <breed>German Shepherd</breed>
+        <age>4</age>
+        <gender>Male</gender>
+        <image>dog3.jpg</image>
+        <status>Adopted</status>
+        <description>Strong, loyal, and trained. Perfect for families needing a guard dog.</description>
     </dog>
 </dogs>
