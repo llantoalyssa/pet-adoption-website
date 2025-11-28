@@ -14,8 +14,11 @@ $dogs = simplexml_load_file($xmlFile) or die("Error: Cannot load XML file");
 <body>
 
 <header>
-    <h1>🐾 Meet Our Dogs</h1>
-    <p>Find your new best friend today!</p>
+    <div class="title-row">
+        <img src="assets/images/Paw House Logo.png" alt="Logo" class="dogs-logo">
+        <h1>Meet Our Dogs</h1>
+    </div>
+    <p class="subtitle">Find your new best friend today!</p>
 </header>
 
 <section class="dogs-section">

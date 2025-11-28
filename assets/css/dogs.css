@@ -10,8 +10,16 @@ body {
 header {
     text-align: center;
     padding: 40px 20px;
-    background: #7B5E57; /* brown */
-    color: white;
+    background: #763A12; /* brown */
+    color: #F2EEEC;
+}
+
+/* Override global header style for THIS page */
+body header {
+    display: block !important;
+    text-align: center;
+    padding: 40px 20px;
+    background: #763A12;
 }
 
 header h1 {
@@ -21,6 +29,35 @@ header h1 {
 
 header p {
     font-size: 1.2rem;
+}
+
+/* Header layout with logo */
+.title-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px; /* space between logo and title */
+}
+
+/* Logo size */
+.dogs-logo {
+    height: 60px;  
+    margin-top: 15px; 
+}
+
+/* Main title color */
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 5px;
+    color: #F2EEEC; /* or choose another color */
+}
+
+/* Subtitle color separated */
+header .subtitle {
+    font-size: 1.3rem;
+    color: #f3bb22; /* DIFFERENT COLOR */
+    margin-top: 5px;
+    font-weight: 500;
 }
 
 /* Dogs Section */
@@ -36,7 +73,7 @@ header p {
 
 /* Dog Card */
 .dog-card {
-    background: #FFF8E1; /* pale yellow */
+    background: #E08600; /* changed to amber */
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     overflow: hidden;
@@ -60,7 +97,7 @@ header p {
 
 .dog-info h2 {
     margin-bottom: 10px;
-    color: #7B5E57; /* brown */
+    color: #f3bb22; /* brown */
 }
 
 .dog-info p {
@@ -73,13 +110,13 @@ header p {
     display: inline-block;
     margin-top: 12px;
     padding: 10px 20px;
-    background-color: #FFD166; /* yellow */
-    color: #333;
+    background-color: #f3bb22; /* yellow */
+    color: #763A12 ;
     border-radius: 6px;
     text-decoration: none;
     transition: 0.3s;
 }
 
 .btn-view:hover {
-    background-color: #FFCC00; /* darker yellow */
+    background-color: #fed76c; /* darker yellow */
 }

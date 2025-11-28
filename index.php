@@ -20,13 +20,13 @@ $dogs = simplexml_load_file($xmlFile) or die("Error: Cannot load XML file");
 <!-- Header -->
 <header>
     <div class="logo">
-        <img src="assets/images/logo.jpg" alt="Logo">
+        <img src="assets/images/Paw House with Text Logo.png" alt="Logo">
     </div>
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#dogs">Dogs</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home"><strong>Home</strong></a></li>
+            <li><a href="#dogs"><strong>Dogs</strong></a></li>
+            <li><a href="#contact"><strong>Contact</strong></a></li>
         </ul>
     </nav>
 </header>
