@@ -1,12 +1,16 @@
-/* Body & general */
+/* =========================
+   Global Styles
+   ========================= */
 body {
     font-family: 'Poppins', sans-serif;
-    background: #F5F5F5; /* light gray background */
+    background: #F5F5F5;
     margin: 0;
     padding: 0;
 }
 
-/* Header */
+/* =========================
+   Header
+   ========================= */
 header {
     text-align: center;
     padding: 40px 20px;
@@ -14,21 +18,17 @@ header {
     color: #F2EEEC;
 }
 
-/* Override global header style for THIS page */
-body header {
-    display: block !important;
-    text-align: center;
-    padding: 40px 20px;
-    background: #763A12;
-}
-
 header h1 {
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    color: #F2EEEC;
 }
 
-header p {
-    font-size: 1.2rem;
+header p.subtitle {
+    font-size: 1.3rem;
+    color: #f3bb22; /* accent color */
+    margin-top: 5px;
+    font-weight: 500;
 }
 
 /* Header layout with logo */
@@ -36,48 +36,40 @@ header p {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px; /* space between logo and title */
+    gap: 15px;
 }
 
-/* Logo size */
 .dogs-logo {
-    height: 60px;  
-    margin-top: 15px; 
+    height: 60px;
+    margin-top: 15px;
 }
 
-/* Main title color */
-header h1 {
-    font-size: 3rem;
-    margin-bottom: 5px;
-    color: #F2EEEC; /* or choose another color */
-}
-
-/* Subtitle color separated */
-header .subtitle {
-    font-size: 1.3rem;
-    color: #f3bb22; /* DIFFERENT COLOR */
-    margin-top: 5px;
-    font-weight: 500;
-}
-
-/* Dogs Section */
+/* =========================
+   Dogs Section
+   ========================= */
 .dogs-section {
-    padding: 50px;
+    padding: 50px 20px;
 }
 
 .dogs-container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
 }
 
-/* Dog Card */
+/* =========================
+   Dog Card
+   ========================= */
 .dog-card {
-    background: #E08600; /* changed to amber */
+    background: #E08600; /* amber */
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     overflow: hidden;
-    transition: 0.3s;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 .dog-card:hover {
@@ -86,37 +78,59 @@ header .subtitle {
 
 .dog-card img {
     width: 100%;
-    height: 220px;
+    max-width: 250px;
+    height: 250px;
     object-fit: cover;
+    border-radius: 10px;
 }
 
-/* Dog Info inside Card */
+/* =========================
+   Dog Info
+   ========================= */
 .dog-info {
     padding: 20px;
 }
 
 .dog-info h2 {
     margin-bottom: 10px;
-    color: #f3bb22; /* brown */
+    color: #f3bb22;
 }
 
 .dog-info p {
     margin: 8px 0;
-    color: #333; /* dark gray */
+    color: #333;
+    font-size: 0.95rem;
 }
 
-/* View Details Button */
+/* =========================
+   Buttons
+   ========================= */
 .btn-view {
     display: inline-block;
     margin-top: 12px;
     padding: 10px 20px;
-    background-color: #f3bb22; /* yellow */
-    color: #763A12 ;
+    background-color: #f3bb22;
+    color: #763A12;
     border-radius: 6px;
     text-decoration: none;
-    transition: 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .btn-view:hover {
-    background-color: #fed76c; /* darker yellow */
+    background-color: #fed76c;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   Status Labels
+   ========================= */
+.adopted-label {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background-color: #999;
+    color: #fff;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.95rem;
 }

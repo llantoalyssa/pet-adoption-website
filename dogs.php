@@ -1,4 +1,8 @@
 <?php
+// Include database connection
+include 'includes/db.php';
+
+// Load dog data from XML
 $xmlFile = 'xml/dogs.xml';
 $dogs = simplexml_load_file($xmlFile) or die("Error: Cannot load XML file");
 ?>
@@ -25,13 +29,30 @@ $dogs = simplexml_load_file($xmlFile) or die("Error: Cannot load XML file");
     <div class="dogs-container">
         <?php foreach ($dogs->dog as $dog): ?>
             <div class="dog-card">
-                <img src="assets/images/dogs/<?php echo $dog->image; ?>" alt="<?php echo $dog->name; ?>">
+                <img src="assets/images/dogs/<?php echo htmlspecialchars($dog->image); ?>" alt="<?php echo htmlspecialchars($dog->name); ?>">
                 
                 <div class="dog-info">
-                    <h2><?php echo $dog->name; ?></h2>
-                    <p><strong>Breed:</strong> <?php echo $dog->breed; ?></p>
-                    <p><strong>Age:</strong> <?php echo $dog->age; ?> years old</p>
-                    <p><strong>Gender:</strong> <?php echo $dog->gender; ?></p>
+                    <h2><?php echo htmlspecialchars($dog->name); ?></h2>
+                    <p><strong>Breed:</strong> <?php echo htmlspecialchars($dog->breed); ?></p>
+                    <p><strong>Age:</strong> <?php echo htmlspecialchars($dog->age); ?> years old</p>
+                    <p><strong>Gender:</strong> <?php echo htmlspecialchars($dog->gender); ?></p>
+                    <p><?php echo htmlspecialchars($dog->description); ?></p>
+
+                    <?php
+                    // Get current status from database
+                    $stmt = $conn->prepare("SELECT status FROM dogs WHERE id = ?");
+                    $stmt->execute([$dog->id]);
+                    $dbDog = $stmt->fetch(PDO::FETCH_ASSOC);
+                    $status = $dbDog ? $dbDog['status'] : trim($dog->status);
+                    ?>
+
+                    <p><strong>Status:</strong> <?php echo htmlspecialchars($status); ?></p>
+                    <?php if ($status === 'Available'): ?>
+                        <a href="adopt.php?id=<?php echo $dog->id; ?>" class="btn-view">Adopt Now</a>
+                    <?php else: ?>
+                        <span class="adopted-label">Already Adopted</span>
+                    <?php endif; ?>
+
                     <a href="dog.php?id=<?php echo $dog->id; ?>" class="btn-view">View Details</a>
                 </div>
             </div>

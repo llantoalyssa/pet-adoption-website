@@ -1,49 +1,95 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #F5F5F5;
+/* ===== RESET & BASE ===== */
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
+body {
+    background-color: #AA4C0A;
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* ===== ADOPT FORM SECTION ===== */
 .adopt-form-section {
-    max-width: 500px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #FFF8E1; /* pale yellow */
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    max-width: 800px;
+    margin: 60px auto;
+    padding: 40px;
+    background-color: #F5DE7A;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
     text-align: center;
 }
 
 .adopt-form-section h1 {
-    color: #7B5E57; /* brown */
-    margin-bottom: 25px;
+    font-size: 2.5rem;
+    color: #AA4C0A;
+    margin-bottom: 30px;
 }
 
+/* Dog info inside adopt form */
+.dog-info {
+    margin-bottom: 30px;
+}
+
+.adopt-form-section .dog-info img {
+    width: 200px !important;
+    height: 200px !important;
+    object-fit: cover;
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
+}
+
+.dog-info p {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 5px 0;
+}
+
+/* Form */
 .adopt-form-section form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    align-items: center;
 }
 
-.adopt-form-section input {
-    padding: 12px;
-    border-radius: 6px;
+.adopt-form-section input,
+.adopt-form-section button {
+    padding: 12px 15px;
+    width: 300px;
+    border-radius: 5px;
     border: 1px solid #ccc;
     font-size: 1rem;
 }
 
+
+/* Button */
 .adopt-form-section button {
-    padding: 12px;
-    background-color: #FFD166; /* yellow */
+    background-color: #AA4C0A;
+    color: #fff;
     border: none;
-    border-radius: 6px;
-    font-weight: bold;
+
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.3s, transform 0.2s;
 }
 
 .adopt-form-section button:hover {
-    background-color: #FFCC00;
+    background-color: #8B3E00;
     transform: scale(1.05);
 }

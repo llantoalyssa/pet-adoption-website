@@ -140,6 +140,29 @@ header nav ul li a:hover {
     background-color: #AA4C0A;
 }
 
+/* View All Dogs Button (Bottom) */
+.btn-view-all {
+    display: inline-block;
+    padding: 12px 26px;
+    background: #6f6a63; /* grayish brown */
+    color: white;
+    border-radius: 15px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.btn-view-all:hover {
+    background: #5a544e;
+    transform: scale(1.07);
+}
+
+/* Extra Spacing */
+.view-all-dogs {
+    padding-bottom: 40px;
+}
+
 /* ===== CONTACT ===== */
 .contact-section {
     padding: 80px 50px;
@@ -179,6 +202,23 @@ header nav ul li a:hover {
     background-color: #AA4C0A;
 }
 
+
+/* Disable link clicks and hover for adopted dogs */
+.dog-link-disabled {
+    display: inline-block;
+    cursor: default;
+    opacity: 0.7;
+    pointer-events: none;
+    text-decoration: none;
+}
+
+.dog-link-disabled img {
+    transition: none;
+}
+
+.dog-link-disabled:hover img {
+    transform: none;
+}
 
 
 

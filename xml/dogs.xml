@@ -13,22 +13,22 @@
 
     <dog>
         <id>2</id>
-        <name>Lucy</name>
-        <breed>Beagle</breed>
+        <name>Josiah</name>
+        <breed>Jack Russell Terrier</breed>
         <age>2</age>
         <gender>Female</gender>
-        <image>dog2.jpg</image>
+        <image>josiah-photo.jpg</image>
         <status>Available</status>
         <description>A sweet and gentle beagle that enjoys cuddles and quiet afternoons.</description>
     </dog>
 
     <dog>
         <id>3</id>
-        <name>Max</name>
-        <breed>German Shepherd</breed>
+        <name>Akiha</name>
+        <breed>Aspin</breed>
         <age>4</age>
         <gender>Male</gender>
-        <image>dog3.jpg</image>
+        <image>akiha-photo.jpg</image>
         <status>Adopted</status>
         <description>Strong, loyal, and trained. Perfect for families needing a guard dog.</description>
     </dog>
