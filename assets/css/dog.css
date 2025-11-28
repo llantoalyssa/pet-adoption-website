@@ -1,0 +1,65 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #F5F5F5;
+    margin: 0;
+    padding: 0;
+}
+
+.dog-profile {
+    display: flex;
+    max-width: 1000px;
+    margin: 50px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.dog-image {
+    flex: 1;
+}
+
+.dog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.dog-image img:hover {
+    transform: scale(1.05);
+}
+
+.dog-details {
+    flex: 1;
+    padding: 30px;
+    background-color: #FFF8E1;
+    color: #333;
+}
+
+.dog-details h1 {
+    color: #7B5E57;
+    margin-bottom: 15px;
+}
+
+.dog-details p {
+    margin: 10px 0;
+    font-size: 1rem;
+}
+
+.adopt-btn {
+    margin-top: 20px;
+    padding: 12px 25px;
+    background-color: #FFD166;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.adopt-btn:hover {
+    background-color: #FFCC00;
+    transform: scale(1.05);
+}

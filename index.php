@@ -38,7 +38,7 @@ $dogs = simplexml_load_file($xmlFile) or die("Error: Cannot load XML file");
     <p>Find your perfect furry friend today!</p>
 </section>
 
-<!-- Dogs Section -->
+<!-- Dogs Listing -->
 <section id="dogs" class="dogs-section">
     <h2>Available Dogs for Adoption</h2>
     <div class="dogs-container">
@@ -49,13 +49,16 @@ $dogs = simplexml_load_file($xmlFile) or die("Error: Cannot load XML file");
                 <p><strong>Breed:</strong> <?php echo $dog->breed; ?></p>
                 <p><strong>Age:</strong> <?php echo $dog->age; ?> years</p>
                 <p><strong>Gender:</strong> <?php echo $dog->gender; ?></p>
-                <p><strong>Description:</strong> <?php echo $dog->description; ?></p>
+                <p><?php echo $dog->description; ?></p>
                 <p><strong>Status:</strong> <?php echo $dog->status; ?></p>
-                <button class="adopt-btn">Adopt Me</button>
+                
+                <!-- Link to individual dog profile -->
+                <a href="dog.php?id=<?php echo $dog->id; ?>" class="adopt-btn">Adopt Me</a>
             </div>
         <?php endforeach; ?>
     </div>
 </section>
+
 
 <!-- Contact / Newsletter -->
 <section id="contact" class="contact-section">
