@@ -1,0 +1,91 @@
+/* Body & general */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #F5F5F5; /* light gray background */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 40px 20px;
+    background: #7B5E57; /* brown */
+    color: white;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+/* Dogs Section */
+.dogs-section {
+    padding: 50px;
+}
+
+.dogs-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+/* Dog Card */
+.dog-card {
+    background: #FFF8E1; /* pale yellow */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.dog-card:hover {
+    transform: translateY(-8px);
+}
+
+.dog-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.dog-card img:hover {
+    transform: scale(1.05);
+}
+
+/* Dog Info inside Card */
+.dog-info {
+    padding: 20px;
+}
+
+.dog-info h2 {
+    margin-bottom: 10px;
+    color: #7B5E57; /* brown */
+}
+
+.dog-info p {
+    margin: 8px 0;
+    color: #333; /* dark gray */
+}
+
+/* View Details Button */
+.btn-view {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 10px 20px;
+    background-color: #FFD166; /* yellow */
+    color: #333;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-view:hover {
+    background-color: #FFCC00;
+    transform: scale(1.05);
+}
