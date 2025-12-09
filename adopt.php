@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-include 'includes/db.php'; // your PDO connection
+include 'includes/db.php'; // PDO connection
 
 // ===== Get dog ID from URL =====
 if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
@@ -23,18 +23,33 @@ if ($selectedDog === null) die("Dog not found.");
 $errorMsg = '';
 $successMsg = '';
 
+// ===== Check login =====
+if (!isset($_SESSION['user_id'])) {
+    // Redirect to login with "next" parameter
+    $currentUrl = $_SERVER['REQUEST_URI'];
+    header('Location: login.php?next=' . urlencode($currentUrl));
+    exit();
+}
+
+$user_id = (int)$_SESSION['user_id'];
+
+// ===== Check if user is verified =====
+$stmtUser = $conn->prepare("SELECT is_verified FROM users WHERE id = ?");
+$stmtUser->execute([$user_id]);
+$user = $stmtUser->fetch(PDO::FETCH_ASSOC);
+
+if (!$user['is_verified']) {
+    $_SESSION['notice'] = "You need to verify your email before submitting an adoption request.";
+    $currentUrl = $_SERVER['REQUEST_URI'];
+    header('Location: login.php?next=' . urlencode($currentUrl));
+    exit();
+}
+
 // ===== Handle adoption request =====
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // ===== Check login =====
-    if (!isset($_SESSION['user_id'])) {
-        header('Location: login.php?next=' . urlencode($_SERVER['REQUEST_URI']));
-        exit();
-    }
-    $user_id = (int)$_SESSION['user_id'];
-
     try {
-        // ===== Check dog status =====
+        // Check dog status
         $stmt = $conn->prepare("SELECT status FROM dogs WHERE id = ?");
         $stmt->execute([$dogId]);
         $dog = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -44,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } elseif ($dog['status'] === 'Adopted') {
             $errorMsg = "Sorry — this dog is already adopted.";
         } else {
-            // ===== Insert adoption request =====
+            // Insert adoption request
             $stmt2 = $conn->prepare("INSERT INTO adoptions (user_id, dog_id) VALUES (?, ?)");
             if ($stmt2->execute([$user_id, $dogId])) {
                 $successMsg = "Your adoption request has been submitted successfully! 🐾";

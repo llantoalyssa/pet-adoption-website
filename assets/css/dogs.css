@@ -102,35 +102,54 @@ header p.subtitle {
     font-size: 0.95rem;
 }
 
-/* =========================
-   Buttons
-   ========================= */
+/* Adopt button for available dogs */
 .btn-view {
     display: inline-block;
-    margin-top: 12px;
+    
     padding: 10px 20px;
-    background-color: #f3bb22;
-    color: #763A12;
-    border-radius: 6px;
+    margin-top: 10px;
+    background-color: #FF6B6B;
+    color: #fff;
     text-decoration: none;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-view:hover {
-    background-color: #fed76c;
-    transform: translateY(-2px);
+    background-color: #ff4b4b;
 }
 
-/* =========================
-   Status Labels
-   ========================= */
+/* Disabled adopt button */
+.btn-disabled {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #ccc;
+    color: #666;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+
+/* Label for adopted dogs */
 .adopted-label {
     display: inline-block;
-    margin-top: 12px;
-    padding: 8px 16px;
+    padding: 10px 15px;
     background-color: #999;
     color: #fff;
-    border-radius: 6px;
+    border-radius: 5px;
     font-weight: bold;
-    font-size: 0.95rem;
+    margin-top: 10px;
+}
+
+/* Optional: dog-card hover effect */
+.dog-card:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+/* Ensure disabled dogs don’t have hover effect */
+.btn-disabled:hover,
+.adopted-label:hover {
+    transform: none;
 }

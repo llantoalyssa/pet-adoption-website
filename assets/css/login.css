@@ -1,0 +1,110 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Container */
+.login-container {
+    background-color: #fff;
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-container h1 {
+    margin-bottom: 20px;
+    color: #99902e;
+}
+
+/* Form Inputs */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 12px 2px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+
+/* Button */
+.login-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #e3be65;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: #FFD166;
+}
+
+/* Links */
+.login-container p {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.login-container p a {
+    color: #d9b45c;
+    text-decoration: none;
+}
+
+.login-container p a:hover {
+    text-decoration: underline;
+}
+
+/* Messages */
+.message {
+    padding: 10px 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.message.error {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+.message.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+/* Flash message */
+#flash-message {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FFD166;
+    color: #fff;
+    padding: 12px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 9999;
+}
+
+#flash-message.show {
+    opacity: 1;
+}

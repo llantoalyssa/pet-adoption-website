@@ -57,6 +57,7 @@ header nav ul li a:hover {
     color: #AA4C0A;
 }
 
+
 /* ===== HERO ===== */
 .hero {
     text-align: center;
@@ -201,6 +202,7 @@ header nav ul li a:hover {
 .contact-section button:hover {
     background-color: #AA4C0A;
 }
+
 
 
 /* Disable link clicks and hover for adopted dogs */

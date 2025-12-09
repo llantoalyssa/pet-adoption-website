@@ -29,3 +29,4 @@ document.querySelectorAll('.adopt-btn').forEach(button => {
 // ===== Optional: Future Plugin Initializations =====
 // Example: chat plugin can be initialized here
 // initChatPlugin();
+
