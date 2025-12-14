@@ -2,33 +2,33 @@
 <dogs>
     <dog>
         <id>1</id>
-        <name>Buddy</name>
-        <breed>Labrador Retriever</breed>
+        <name>Akiha</name>
+        <breed>Aspin</breed>
         <age>3</age>
         <gender>Male</gender>
-        <image>buddy.jpg</image>
+        <image>akiha-aspin.png</image>
         <status>Available</status>
         <description>A friendly and energetic dog that loves kids and outdoor play.</description>
     </dog>
 
     <dog>
         <id>2</id>
-        <name>Josiah</name>
-        <breed>Jack Russell Terrier</breed>
+        <name>Anna</name>
+        <breed>Aspin</breed>
         <age>2</age>
         <gender>Female</gender>
-        <image>josiah-photo.jpg</image>
+        <image>anna-aspin.png</image>
         <status>Available</status>
         <description>A sweet and gentle beagle that enjoys cuddles and quiet afternoons.</description>
     </dog>
 
     <dog>
         <id>3</id>
-        <name>Akiha</name>
-        <breed>Aspin</breed>
+        <name>Chewie</name>
+        <breed>Yorkshireterrier</breed>
         <age>4</age>
         <gender>Male</gender>
-        <image>akiha-photo.jpg</image>
+        <image>chewie-yorkshireterrier.png</image>
         <status>Adopted</status>
         <description>Strong, loyal, and trained. Perfect for families needing a guard dog.</description>
     </dog>

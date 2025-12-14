@@ -1,80 +1,53 @@
 <?php
-
 session_start();
-include 'includes/db.php'; // PDO connection
-
-// ===== Get dog ID from URL =====
-if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
-    die("Error: Invalid dog selection.");
-}
-$dogId = (int)$_GET['id'];
-
-// ===== Load dog info from XML =====
-$dogs = simplexml_load_file('xml/dogs.xml') or die("Error: Cannot load XML file");
-$selectedDog = null;
-foreach ($dogs->dog as $dog) {
-    if ((int)$dog->id === $dogId) {
-        $selectedDog = $dog;
-        break;
-    }
-}
-if ($selectedDog === null) die("Dog not found.");
-
-$errorMsg = '';
-$successMsg = '';
+include 'includes/db.php';
 
 // ===== Check login =====
 if (!isset($_SESSION['user_id'])) {
-    // Redirect to login with "next" parameter
-    $currentUrl = $_SERVER['REQUEST_URI'];
-    header('Location: login.php?next=' . urlencode($currentUrl));
+    header("Location: login.php?next=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
+}
+$user_id = (int) $_SESSION['user_id'];
+
+// ===== Validate dog ID =====
+if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
+    header("Location: dogs.php");
+    exit();
+}
+$dogId = (int) $_GET['id'];
+
+// ===== Load dog from DATABASE =====
+$stmt = $conn->prepare("SELECT * FROM dogs WHERE id = ?");
+$stmt->execute([$dogId]);
+$dog = $stmt->fetch(PDO::FETCH_ASSOC);
+
+// Check if dog exists and is available
+if (!$dog) {
+    $_SESSION['flash'] = "Dog not found.";
+    $_SESSION['flash_type'] = "error";
+    header("Location: dogs.php");
     exit();
 }
 
-$user_id = (int)$_SESSION['user_id'];
-
-// ===== Check if user is verified =====
-$stmtUser = $conn->prepare("SELECT is_verified FROM users WHERE id = ?");
-$stmtUser->execute([$user_id]);
-$user = $stmtUser->fetch(PDO::FETCH_ASSOC);
-
-if (!$user['is_verified']) {
-    $_SESSION['notice'] = "You need to verify your email before submitting an adoption request.";
-    $currentUrl = $_SERVER['REQUEST_URI'];
-    header('Location: login.php?next=' . urlencode($currentUrl));
+// ===== Check if user already requested this dog =====
+$stmt = $conn->prepare("SELECT * FROM adoptions WHERE user_id = ? AND dog_id = ? AND status = 'Pending'");
+$stmt->execute([$user_id, $dogId]);
+if ($stmt->fetch()) {
+    $_SESSION['flash'] = "You already submitted a request for this dog.";
+    $_SESSION['flash_type'] = "error";
+    header("Location: dogs.php");
     exit();
 }
 
-// ===== Handle adoption request =====
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-    try {
-        // Check dog status
-        $stmt = $conn->prepare("SELECT status FROM dogs WHERE id = ?");
-        $stmt->execute([$dogId]);
-        $dog = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$dog) {
-            $errorMsg = "Dog not found in database.";
-        } elseif ($dog['status'] === 'Adopted') {
-            $errorMsg = "Sorry — this dog is already adopted.";
-        } else {
-            // Insert adoption request
-            $stmt2 = $conn->prepare("INSERT INTO adoptions (user_id, dog_id) VALUES (?, ?)");
-            if ($stmt2->execute([$user_id, $dogId])) {
-                $successMsg = "Your adoption request has been submitted successfully! 🐾";
-
-                // Optional: mark dog as adopted
-                $stmt3 = $conn->prepare("UPDATE dogs SET status = 'Adopted' WHERE id = ?");
-                $stmt3->execute([$dogId]);
-            } else {
-                $errorMsg = "Database error: unable to submit adoption.";
-            }
-        }
-
-    } catch (PDOException $e) {
-        $errorMsg = "Database error: " . $e->getMessage();
-    }
+// ===== Check email verification =====
+$stmt = $conn->prepare("SELECT is_verified FROM users WHERE id = ?");
+$stmt->execute([$user_id]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+if (!$user || !$user['is_verified']) {
+    $_SESSION['flash'] = "Please verify your email before adopting.";
+    $_SESSION['flash_type'] = "error";
+    header("Location: login.php?next=" . urlencode($_SERVER['REQUEST_URI']));
+    exit();
 }
 ?>
 
@@ -83,38 +56,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Adopt <?php echo htmlspecialchars($selectedDog->name); ?> 🐾</title>
+<title>Adopt <?= htmlspecialchars($dog['name']) ?> 🐾</title>
 <link rel="stylesheet" href="assets/css/adopt.css">
 </head>
 <body>
 
 <section class="adopt-form-section">
-    <h1>Adopt <?php echo htmlspecialchars($selectedDog->name); ?> 🐾</h1>
-
-    <!-- Messages -->
-    <?php if ($errorMsg): ?>
-        <div class="message error"><?php echo $errorMsg; ?></div>
-    <?php endif; ?>
-    <?php if ($successMsg): ?>
-        <div class="message success"><?php echo $successMsg; ?></div>
-    <?php endif; ?>
+    <h1>Adopt <?= htmlspecialchars($dog['name']) ?> 🐾</h1>
 
     <!-- Dog Info -->
     <div class="dog-info">
-        <img src="assets/images/dogs/<?php echo htmlspecialchars($selectedDog->image); ?>" alt="<?php echo htmlspecialchars($selectedDog->name); ?>">
-        <p><strong>Breed:</strong> <?php echo htmlspecialchars($selectedDog->breed); ?></p>
-        <p><strong>Age:</strong> <?php echo htmlspecialchars($selectedDog->age); ?> years</p>
-        <p><strong>Gender:</strong> <?php echo htmlspecialchars($selectedDog->gender); ?></p>
-        <p><strong>Status:</strong> <?php echo htmlspecialchars($selectedDog->status); ?></p>
-        <p><?php echo htmlspecialchars($selectedDog->description); ?></p>
+        <img src="assets/images/dogs/<?= htmlspecialchars($dog['image']) ?>" alt="<?= htmlspecialchars($dog['name']) ?>">
+        <p><strong>Breed:</strong> <?= htmlspecialchars($dog['breed']) ?></p>
+        <p><strong>Age:</strong> <?= htmlspecialchars($dog['age']) ?> years</p>
+        <p><strong>Gender:</strong> <?= htmlspecialchars($dog['gender']) ?></p>
+        <p><?= htmlspecialchars($dog['description']) ?></p>
     </div>
 
-    <!-- Form only shows if adoption not submitted -->
-    <?php if (!$successMsg): ?>
-    <form action="" method="POST">
+    <!-- Adoption Form -->
+    <form action="submit-adoption.php" method="POST">
+        <input type="hidden" name="dog_id" value="<?= $dog['id'] ?>">
+
+        <label>Full Name</label>
+        <input type="text" name="full_name" required>
+
+        <label>Phone Number</label>
+        <input type="text" name="phone" required>
+
+        <label>Address</label>
+        <textarea name="address" required></textarea>
+
+        <label>Why do you want to adopt this dog?</label>
+        <textarea name="reason" required></textarea>
+
+        <label>Experience with dogs</label>
+        <textarea name="experience"></textarea>
+
+        <label>Living Situation</label>
+        <select name="living_situation" required>
+            <option value="">Select</option>
+            <option>House with yard</option>
+            <option>House</option>
+            <option>Apartment</option>
+            <option>Condo</option>
+        </select>
+
         <button type="submit">Submit Adoption Request</button>
     </form>
-    <?php endif; ?>
+
+    
 </section>
 
 </body>

@@ -1,0 +1,20 @@
+/* Center the title */
+h1 {
+    text-align: center;
+}
+
+/* Container to center the image */
+.map-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Image styling */
+.map-container img {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+}
+
+
