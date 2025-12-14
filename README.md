@@ -1,8 +1,33 @@
+## To send confirmation emails:
+Step 1: Go to http://localhost/phpmyadmin
+Step 2: Go to User accounts (top menu)
+Step 3 — Click Add user account
+Step 4:
+Fill:
+Username: dogs_adopt_user
+Host: Local (localhost)
+Password: DogsAdoptionCent3r
+Re-type: DogsAdoptionCent3r
+STEP 5
+Scroll to Global Privileges → Click Check All
+Then click Go
+
+$local_user = 'dogs_adopt_user';
+$local_pass = 'DogsAdoptionCent3r';
+
+Reload the PHP page.
+
+---
+
 # Dog Adoption Center Website
 
 This is a web-based Dog Adoption System that allows users to browse dogs, submit adoption requests, track their adoption status, and subscribe to a weekly newsletter. Admins can manage dogs and adoption requests.
 
 ---
+
+## DATABASE
+database name:
+   dog_adoption_db
 
 ## Website Access
 
