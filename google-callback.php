@@ -26,21 +26,27 @@ if (isset($_GET['code'])) {
         $profile   = $data['picture'];
 
         // Check if user exists in DB and is not deleted
-        $stmt = $conn->prepare("SELECT id, username FROM users WHERE email = ? AND is_deleted = 0");
+       $stmt = $conn->prepare("SELECT id, username, is_deleted FROM users WHERE email = ?");
         $stmt->execute([$email]);
         $user = $stmt->fetch();
 
         if (!$user) {
-            // Insert new Google user with is_deleted = 0
+            // Insert new Google user
             $insert = $conn->prepare(
                 "INSERT INTO users (username, email, google_id, picture, created_at, is_verified, is_deleted) 
-                 VALUES (?, ?, ?, ?, NOW(), 1, 0)"
+                VALUES (?, ?, ?, ?, NOW(), 1, 0)"
             );
             $insert->execute([$name, $email, $google_id, $profile]);
 
             $user_id = $conn->lastInsertId();
             $username = $name;
         } else {
+            // Reactivate if soft-deleted
+            if ($user['is_deleted']) {
+                $update = $conn->prepare("UPDATE users SET is_deleted = 0 WHERE id = ?");
+                $update->execute([$user['id']]);
+            }
+
             $user_id = $user['id'];
             $username = $user['username'];
         }
@@ -48,6 +54,7 @@ if (isset($_GET['code'])) {
         // Set session like normal login
         $_SESSION['user_id'] = $user_id;
         $_SESSION['username'] = $username;
+        $_SESSION['user_type'] = 'user'; // default for Google SSO
         $_SESSION['login_type'] = "google";
 
         // Flash message

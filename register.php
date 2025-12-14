@@ -86,6 +86,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
+<a href="index.php" style="position: fixed; top: 10px; left: 10px; z-index: 100;">
+    <img src="assets/images/Paw House Logo.png" alt="Logo" 
+         style="width: 55px; height: 55px; cursor: pointer;">
+</a>
+
 <div class="register-container">
     <h1>Create Account</h1>
     <?php if(!empty($message)): ?>

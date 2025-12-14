@@ -26,10 +26,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Login successful
                 $_SESSION['user_id'] = $user['id'];
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['user_type'] = $user['user_type'];
                 $_SESSION['flash'] = "Successfully logged in!";
                 $_SESSION['flash_type'] = "success";
 
-                header("Location: $next");
+                // Redirect based on user_type
+                if ($user['user_type'] === 'admin') {
+                    header("Location: admin-dashboard.php");
+                } else {
+                    header("Location: $next");
+                }
                 exit();
             } else {
                 $message = "You must verify your email before logging in.";
@@ -50,6 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="stylesheet" href="assets/css/login.css">
 </head>
 <body>
+
+<a href="index.php" style="position: fixed; top: 10px; left: 10px; z-index: 100;">
+    <img src="assets/images/Paw House Logo.png" alt="Logo" 
+         style="width: 55px; height: 55px; cursor: pointer;">
+</a>
 
 <div class="login-container">
     <h1>Login</h1>
@@ -108,6 +119,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     setTimeout(() => { flash.classList.remove('show'); }, 3000);
     </script>
 <?php endif; ?>
+
+
 
 </body>
 </html>

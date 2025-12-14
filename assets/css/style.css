@@ -61,7 +61,7 @@ header nav ul li a:hover {
 /* ===== HERO ===== */
 .hero {
     text-align: center;
-    padding: 100px 20px;
+    padding: 10px 20px;
     background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('../images/hero-bg.jpg') no-repeat center center/cover;
     color: #fff;
 }
