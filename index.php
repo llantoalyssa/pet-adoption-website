@@ -57,7 +57,7 @@ endif;
     <ul>
         <li><a href="#home"><strong>Home</strong></a></li>
         <li><a href="#dogs"><strong>Dogs</strong></a></li>
-        <li><a href="#contact"><strong>Contact</strong></a></li>
+        <li><a href="#contact"><strong>Subscribe</strong></a></li>
         <li><a href="facility-map.php"><strong>Facility Map</strong></a></li>
 
         <?php if(isset($_SESSION['user_id'])): ?>
